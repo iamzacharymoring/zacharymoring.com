@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unpkg.com/missing.css@1.2.0">
+        <link rel="stylesheet"
+              href="https://unpkg.com/missing.css@1.2.0/dist/missing-prism.min.css">
+        <link rel="stylesheet"
+              href="https://fonts.bunny.net/css?family=source-sans-3:400,700%7Cm-plus-code-latin:400,700">
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <header class="flex-row">
+            <nav class="flex-row">
+                <ul role="list">
+                    <li>
+                        <a href="/">home</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {{ content | safe }}
+        </main>
+    </body>
+</html>
