@@ -1,5 +1,5 @@
 ---
-title: zacharymoring_dot_com
+title: zacharymoring_dot_com | home
 ---
 
 <h1>Zachary Moring</h1>
@@ -11,3 +11,18 @@ title: zacharymoring_dot_com
        ref="noreferrer"
        href="https://github.com/iamzacharymoring">github ↗</a>
 </div>
+<hr>
+<section>
+    <h2>Recent articles</h2>
+    <div class="flex-column">
+        {% for article in collections.articles | take(3) %}
+            <article class="grid packed">
+                <div data-cols="1">{{ article.date|yyyymmdd }}</div>
+                <div data-cols@s="1" data-cols="2 4">
+                    <a href="{{ article.url }}">{{ article.data.title }}</a>
+                </div>
+            </article>
+        {% endfor %}
+        <a href="/articles" class="align-self:start">All articles »</a>
+    </div>
+</section>
