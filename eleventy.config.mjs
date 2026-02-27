@@ -1,5 +1,6 @@
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import markdownIt from "markdown-it";
+import toml from "@iarna/toml";
 
 // =============================================================================
 // Defs
@@ -7,6 +8,9 @@ import markdownIt from "markdown-it";
 
 function configureGlobalSettings(eleventyConfig) {
   eleventyConfig.addGlobalData("layout", "page.njk");
+
+  // Add TOML data support
+  eleventyConfig.addDataExtension("toml", (contents) => toml.parse(contents));
 }
 
 function configureMarkdownExtensions(eleventyConfig) {
