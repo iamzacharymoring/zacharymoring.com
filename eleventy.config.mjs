@@ -30,10 +30,28 @@ function configureMarkdownExtensions(eleventyConfig) {
 function createCustomFilters(eleventyConfig) {
   eleventyConfig.addNunjucksFilter("startswith", (s, p) => s.startsWith(p));
   eleventyConfig.addNunjucksFilter("take", (arr, n) => arr.slice(0, n));
+  eleventyConfig.addNunjucksFilter("concat", (arr1, arr2) => arr1.concat(arr2));
+  eleventyConfig.addNunjucksFilter("annotate", (arr, key, value) =>
+    (arr ?? []).map((x) => ({ ...x, [key]: value })),
+  );
   eleventyConfig.addNunjucksFilter(
     "yyyymmdd",
     (d) => d.toISOString().split("T")[0],
   );
+  eleventyConfig.addNunjucksFilter("latest", (arr) =>
+    (arr ?? []).sort((a, b) => (b.date < a.date ? -1 : 1)),
+  );
+  eleventyConfig.addNunjucksFilter("astimer", (t, mode = "") => {
+    const time = Math.abs(t);
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+
+    const m = String(minutes);
+    const ss = String(seconds).padStart(2, "0");
+
+    const prefix = mode === "diff" ? (t < 0 ? "-" : "+") : "";
+    return `${prefix}${m}:${ss}`;
+  });
 }
 
 function createCustomCollections(eleventyConfig) {

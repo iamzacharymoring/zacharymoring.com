@@ -1,0 +1,18 @@
+
+[[queens]]
+date = "2026-03-03"
+me = 31
+avg = 52
+diff = -21
+
+[[tango]]
+date = "2026-03-03"
+me = 29
+avg = 48
+diff = -19
+
+[[minisudoku]]
+date = "2026-03-03"
+me = 88
+avg = 82
+diff = 6

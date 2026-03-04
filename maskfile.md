@@ -19,13 +19,13 @@ npx @11ty/eleventy --serve
 npx @11ty/eleventy
 ```
 
-## make
+## add
 
-Commands to make new entries for the site.
+Commands to add new entries on the site.
 
-### make article (title)
+### add article (title)
 
-> Make a new article with the given (quoted) title.
+> Add a new article with the given (quoted) title.
 
 ```bash
 # Slugify the title
@@ -36,5 +36,103 @@ title: $title
 ---
 
 # $title
+HEREDOC
+```
+
+### add stats
+
+Add stats for a specific game. In this case, each game is a subcommand, so that
+only valid game names (queens, tango, or mini-sudoku) are allowed.
+
+#### add stats queens (my_time) (avg_time)
+
+> Add a Queens score.
+
+```bash
+# Convert time stamps to seconds
+if [[ "$my_time" =~ ":" ]]; then
+    mtime=$(echo $my_time | awk -F: '{ print ($1 * 60) + $2 }')
+else
+    mtime=$my_time
+fi
+
+if [[ "$avg_time" =~ ":" ]]; then
+    atime=$(echo $avg_time | awk -F: '{ print ($1 * 60) + $2 }')
+else
+    atime=$avg_time
+fi
+
+dtime=$(( $mtime - $atime ))
+
+# Write out
+cat >> ./src/things/stats.toml << HEREDOC
+
+[[queens]]
+date = "$(date -Idate)"
+me = $mtime
+avg = $atime
+diff = $dtime
+HEREDOC
+```
+
+#### add stats tango (my_time) (avg_time)
+
+> Add a Tango score.
+
+```bash
+# Convert time stamps to seconds
+if [[ "$my_time" =~ ":" ]]; then
+    mtime=$(echo $my_time | awk -F: '{ print ($1 * 60) + $2 }')
+else
+    mtime=$my_time
+fi
+
+if [[ "$avg_time" =~ ":" ]]; then
+    atime=$(echo $avg_time | awk -F: '{ print ($1 * 60) + $2 }')
+else
+    atime=$avg_time
+fi
+
+dtime=$(( $mtime - $atime ))
+
+# Write out
+cat >> ./src/things/stats.toml << HEREDOC
+
+[[tango]]
+date = "$(date -Idate)"
+me = $mtime
+avg = $atime
+diff = $dtime
+HEREDOC
+```
+
+#### add stats mini-sudoku (my_time) (avg_time)
+
+> Add a Mini Sudoku score.
+
+```bash
+# Convert time stamps to seconds
+if [[ "$my_time" =~ ":" ]]; then
+    mtime=$(echo $my_time | awk -F: '{ print ($1 * 60) + $2 }')
+else
+    mtime=$my_time
+fi
+
+if [[ "$avg_time" =~ ":" ]]; then
+    atime=$(echo $avg_time | awk -F: '{ print ($1 * 60) + $2 }')
+else
+    atime=$avg_time
+fi
+
+dtime=$(( $mtime - $atime ))
+
+# Write out
+cat >> ./src/things/stats.toml << HEREDOC
+
+[[minisudoku]]
+date = "$(date -Idate)"
+me = $mtime
+avg = $atime
+diff = $dtime
 HEREDOC
 ```
