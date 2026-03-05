@@ -1,5 +1,6 @@
 ---
-title: stats
+title: Stats
+name: Queens/Tango/Mini Sudoku stats
 ---
 
 <h1>Game stats</h1>
@@ -172,13 +173,13 @@ title: stats
                 {% set queensAnnotated = queens|annotate("game", "Queens") %}
                 {% set tangoAnnotated = tango|annotate("game", "Tango") %}
                 {% set minisudokuAnnotated = minisudoku|annotate("game", "Sudoku") %}
-                {% for game in queensAnnotated|concat(tangoAnnotated)|concat(minisudokuAnnotated) %}
+                {% for game in queensAnnotated|concat(tangoAnnotated)|concat(minisudokuAnnotated)|latest %}
                     <tr>
                         <td>{{ game.date }}</td>
                         <td>{{ game.game }}</td>
                         <td>{{ game.me|astimer }}</td>
                         <td>{{ game.avg|astimer }}</td>
-                        <td class="bold color border {% if game.diff < 0 %}ok{% else %}bad{% endif %}">{{ game.diff|astimer("diff") }}</td>
+                        <td class="bold color border {% if game.diff > 0 %}bad{% else %}ok{% endif %}">{{ game.diff|astimer("diff") }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
