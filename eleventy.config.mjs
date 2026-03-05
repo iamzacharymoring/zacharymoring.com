@@ -60,6 +60,15 @@ function createCustomCollections(eleventyConfig) {
       .getFilteredByGlob("./src/articles/*.md")
       .sort((a, b) => b.date - a.date),
   );
+  eleventyConfig.addCollection("things", (collectionsApi) => {
+    const md = collectionsApi.getFilteredByGlob("./src/things/*.md");
+    const njk = collectionsApi.getFilteredByGlob("./src/things/*.njk");
+    const things = md.concat(njk);
+
+    return things.sort((a, b) => {
+      return a.data.title < b.data.title ? -1 : 1;
+    });
+  });
 }
 
 // =============================================================================

@@ -1,0 +1,18 @@
+---
+title: Things
+---
+
+<h1>Things</h1>
+<ul>
+    {% for thing in collections.things %}
+        <li>
+            <a href="{{ thing.url }}">
+                {% if thing.data.name %}
+                    {{ thing.data.name }}
+                {% else %}
+                    {{ thing.data.title }}
+                {% endif %}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
