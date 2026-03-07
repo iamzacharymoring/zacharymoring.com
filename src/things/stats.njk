@@ -170,10 +170,14 @@ name: Queens/Tango/Mini Sudoku stats
                 </tr>
             </thead>
             <tbody>
-                {% set queensAnnotated = queens|annotate("game", "Queens") %}
-                {% set tangoAnnotated = tango|annotate("game", "Tango") %}
-                {% set minisudokuAnnotated = minisudoku|annotate("game", "Sudoku") %}
-                {% for game in queensAnnotated|concat(tangoAnnotated)|concat(minisudokuAnnotated)|latest %}
+                {# need to set up some data manipulation as a result of how the toml is set up #}
+                {% set queensAnnotated = queens|latest|take(365)|annotate("game", "Queens") %}
+                {% set tangoAnnotated = tango|latest|take(365)|annotate("game", "Tango") %}
+                {% set minisudokuAnnotated = minisudoku|latest|take(365)|annotate("game", "Sudoku") %}
+                {# sort again so it is grouped by date... thank goodness this is all at compile time #}
+                {% set games = queensAnnotated|concat(tangoAnnotated)|concat(minisudokuAnnotated)|latest %}
+                {# now the rows #}
+                {% for game in games %}
                     <tr>
                         <td>{{ game.date }}</td>
                         <td>{{ game.game }}</td>
