@@ -124,3 +124,21 @@ date = "2026-03-09"
 me = 59
 avg = 70
 diff = -11
+
+[[queens]]
+date = "2026-03-10"
+me = 37
+avg = 48
+diff = -11
+
+[[tango]]
+date = "2026-03-10"
+me = 31
+avg = 58
+diff = -27
+
+[[minisudoku]]
+date = "2026-03-10"
+me = 70
+avg = 100
+diff = -30
