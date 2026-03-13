@@ -142,3 +142,51 @@ date = "2026-03-10"
 me = 70
 avg = 100
 diff = -30
+
+[[queens]]
+date = "2026-03-11"
+me = 58
+avg = 54
+diff = 4
+
+[[tango]]
+date = "2026-03-11"
+me = 40
+avg = 60
+diff = -20
+
+[[minisudoku]]
+date = "2026-03-11"
+me = 112
+avg = 96
+diff = 16
+
+[[queens]]
+date = "2026-03-12"
+me = 57
+avg = 64
+diff = -7
+
+[[tango]]
+date = "2026-03-12"
+me = 48
+avg = 46
+diff = 2
+
+[[queens]]
+date = "2026-03-13"
+me = 55
+avg = 75
+diff = -20
+
+[[tango]]
+date = "2026-03-13"
+me = 57
+avg = 68
+diff = -11
+
+[[minisudoku]]
+date = "2026-03-13"
+me = 219
+avg = 155
+diff = 64
